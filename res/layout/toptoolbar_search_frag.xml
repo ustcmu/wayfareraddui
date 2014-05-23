@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Changed by Mu
+	Description: 
+	UI after click search button on toptoolbar
+	let user input Start address and destination-->
+
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+    android:layout_width    = "match_parent"
+    android:layout_height   = "match_parent"
+    android:paddingLeft   = "16dp"
+    android:paddingRight  = "16dp"
+    android:orientation      = "horizontal"
+    >
+
+    <LinearLayout
+        android:layout_weight   = "1"
+        android:layout_width    = "0dp"
+        android:layout_height   = "wrap_content"
+        android:orientation      = "vertical"
+        >
+        <AutoCompleteTextView
+            android:id = "@+id/start_addr"
+            android:layout_width    = "match_parent"
+            android:layout_height   = "wrap_content"
+            android:hint            = "@string/start_addr"
+            android:completionThreshold = "5"
+            />
+
+        <AutoCompleteTextView
+            android:id = "@+id/dest_addr"
+            android:layout_width    = "match_parent"
+            android:layout_height   = "wrap_content"
+            android:hint            = "@string/dest_addr"
+            />
+    </LinearLayout>
+    <ImageButton
+ 	android:id = "@+id/confirmloc"
+ 	android:layout_width = "wrap_content"
+ 	android:layout_height = "wrap_content"
+ 	android:background = "@drawable/confirm_button"
+ 	android:onClick = "onConfirm"
+ 	/>
+</LinearLayout>

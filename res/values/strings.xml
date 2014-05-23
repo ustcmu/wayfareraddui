@@ -28,4 +28,8 @@
     <string name="button_ok">OK</string>
     <!-- ========================================================= -->
 
+    <!-- For CoverImage-->
+    <!-- ========================================================= -->
+    <string name="coverimg">Cover Image</string>
+
 </resources>

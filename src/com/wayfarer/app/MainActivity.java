@@ -48,7 +48,6 @@ import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.*;
 import com.google.android.gms.maps.*;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -56,7 +55,9 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -69,6 +70,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+
 
 public class MainActivity extends Activity implements
     GooglePlayServicesClient.ConnectionCallbacks,
@@ -103,7 +106,12 @@ public class MainActivity extends Activity implements
 
         setContentView(R.layout.main);
 
+        // Add by Mu. Config top tool bar
         fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        Fragment newFragment = new ToptoolbarInitialFragment();
+        ft.add(R.id.toptoolbar, newFragment);
+        ft.commit();
 
         // Since bluetooth plays a central role of this app, it will ask the
         // user to enable bluetooth at startup.
@@ -116,10 +124,22 @@ public class MainActivity extends Activity implements
         // TODO: this part is undone. location service is buggy. Modify is needed.
         locationServiceInitialization();
 
+
         renderMap();
         Log.d(LOG_TAG, "Map render finishes.");
 
         Log.d(LOG_TAG, "MainActivity initialized.");
+    }
+
+
+    public void ButtonSearchloc(View target)
+    {
+        fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        Fragment newFragment = new ToptoolbarSearchFragment();
+        ft.replace(R.id.toptoolbar, newFragment);
+        ft.addToBackStack(null); 
+        ft.commit();
     }
 
     private void locationServiceInitialization()
